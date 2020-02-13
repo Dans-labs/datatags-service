@@ -44,7 +44,9 @@ In the sections below more details are provided about:
 ### Frameworks
 
 ### <a name="datatags-scheme-dans"></a>DANS DataTags Scheme
-![DANS DataTags Scheme](readme-imgs/DANS-DataTags-Scheme.png "DANS DataTags Scheme")
+![DANS DataTags Scheme](readme-imgs/Datatags-2nd-prototype.jpg "DANS DataTags Scheme")
+![DANS DataTags UI](readme-imgs/DANS-DataTags-Scheme.png "DANS DataTags UI")
+
 
 
 ### <a name="datatags-scheme-creator-zinktree"></a>Zinktree Visual Designer
