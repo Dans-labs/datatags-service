@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/dans/v1/head :: head(title='DataTags Service')"/>
+<body class="zingtree" onload="noBack();"
+	  onpageshow="if (event.persisted) noBack();" onunload="">
+<div id="visual-portal-wrapper" class="container">
+	<!-- content -->
+	<div id="content" class="set1">
+
+		<!-- header -->
+		<header th:replace="fragments/dans/v1/header"/>
+		<!-- /header -->
+
+		<div id="main" role="main">
+			<h1 th:text="#{dans.v1.home.title}"/>
+			<div class="widewrapper main">
+				<div class="container">
+					<div style="display: block;padding=0px;margin-right:70px;!important;">
+						<div class="row">
+							<div class="col-md-12">
+								<h2 th:text="#{dans.v1.home.subtitle}"/>
+								<p th:utext="#{dans.v1.home.contentText}"/>
+								<br/>
+								<div id="qa-area" class="well button-node-question">
+									<div id="question_area" style="display: none;">
+										<div class="row">
+											<div class="col-md-12">
+												<h3 class="node-question-text"><span id="node-question">Question</span><br><br></h3>
+											</div>
+										</div>
+									</div>
+									<div class="row" align="center">
+										<div class="answers">
+											<div class="col-md-offset-3 col-md-6 col-sm-12">
+												<form method="post" th:object="${dataTagInfoHolder}">
+													<div class="form-group row">
+														<div class="col-sm-10">
+															<button type="submit" class="btn btn-lg btn-zingtree btn-block btn-primary" name="_eventId_next"><span th:utext="#{dans.v1.home.next}"/></button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer th:replace="fragments/dans/v1/footer"/>
+		</div>
+
+	</div>
+</div>
+
+</body>
+
+</html>

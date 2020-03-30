@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/iqss/v1/head :: head(title='DataTags Service')"/>
+<body onload="noBack();"
+	  onpageshow="if (event.persisted) noBack();" onunload="">
+
+<div class="container" id="content">
+
+
+	<div class="row">
+		<div class="col">
+			<div class="d-flex justify-content-end align-items-baseline" style="margin:0 .5rem">
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row my-2">
+		<div class="col">
+
+			<div class="card border-info questionPanel">
+				<!-- header -->
+				<header th:replace="fragments/iqss/v1/header"/>
+				<!-- /header -->
+				<div class="card-body">
+
+					<p th:utext="#{iqss.v1.s3-dua-am.question}"/>
+					<h5>Terms</h5>
+					<ul>
+						<li><em>implied</em>: The user accepts the terms by using Dataverse.</li>
+					</ul>
+				</div>
+
+				<form method="post" th:object="${dataTagInfoHolder}">
+
+					<div class="card-body noteCtnr" id="noteDiv" style="display: none">
+						<textarea placeholder="Annotate your answer here" name="note" th:field="*{note}" class="form-control" rows="2"></textarea>
+					</div>
+					<div class="card-footer">
+						<div class="answerButtonCtnr">
+							<button type="button" class="toggleNoteBtn" onclick="$('#noteDiv').slideToggle(); $('#noteDiv textarea').focus()"><i class="fa fa-pencil"></i> Add note</button>
+							<button type="submit" class="btn btn-primary" name="_eventId_implied"><span th:utext="#{iqss.v1.s3-dua-am.implied}"/></button>
+							<button type="submit" class="btn btn-primary" name="_eventId_clickThrough"><span th:utext="#{iqss.v1.s3-dua-am.clickThrough}"/></button>
+							<button type="submit" class="btn btn-primary" name="_eventId_signed"><span th:utext="#{iqss.v1.s3-dua-am.signed}"/></button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<footer th:replace="fragments/iqss/v1/default-buttons"/>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>

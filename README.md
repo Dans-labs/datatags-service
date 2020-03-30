@@ -2,8 +2,12 @@
 
 ##### EOSC-Hub 
 
+EOSC-hub is the largest implementation project of the European Open Science Cloud (EOSC) initiative. It is a central contact point for European researchers and innovators 
+to discover, access, use and reuse a broad spectrum of resources for advanced data-driven research. 
+
 The consortium of 100 partners from more than 50 countries will develop the vision of the Hub as the integration and 
-management system of the future European Open Science Cloud. It is a central contact point for European researchers and innovators 
+management system of the future European Open Science Cloud. EOSC-hub is the largest implementation project of the European Open Science Cloud (EOSC) initiative. 
+It is a central contact point for European researchers and innovators 
 to discover, access, use and reuse a broad spectrum of resources for advanced data-driven research. 
 
 #### WP2
@@ -30,7 +34,7 @@ In the sections below more details are provided about:
 *   [Push Plugins]()
 *   [Dockerizing the DataTags Service](#datatags-service-docker)
 *   [Deploying, Running and Using DataTags Service on Kubernetes](#datatags-kubernetes)
-*   [Connecting to DataTags Service](#datatags-dataverse)
+*   [Connecting to DataTags Service](#datatags-connection)
     *   [Dataverse](#datatags-dataverse)
     *   [B2Share](#datatags-b2share)
     *	[Your own application](#datatags-apps)
@@ -56,3 +60,14 @@ In the sections below more details are provided about:
 ### <a name="datatags-scheme-creator-yed"></a>yEd Graph Editor
 
 ![Zinktree DataTags Scheme](readme-imgs/yed-designer.png "Zingtree DataTags Scheme Creator")
+
+### <a name="datatags-connection"></a>Connection to DataTag Service
+
+### <a name="datatags-dataverse"></a>Connection to DataTag Service
+        {
+            "dataTagServiceUrl": "http://localhost:8888/dans/v1", 
+            "encryptKey": "@km1-10Dec04",
+            "validity-duration": 600   
+        }
+ 
+ dataTagServiceUrl = is the        

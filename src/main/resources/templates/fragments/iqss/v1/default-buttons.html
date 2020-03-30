@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="row persistent-buttons" th:fragment="default-buttons">
+	<div class="col-xs-8 col-md-10" style="padding-top: 10px;!important;">
+		<a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_back'}" id="back_button11" class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="" style="display: inline-block;" data-original-title="Go back one step">Back</a>
+		&nbsp;&nbsp;&nbsp;<a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_home'}" id="restart_button11" class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" title="" style="display: inline-block;" data-original-title="Restart from the beginning">Restart</a>
+		<br/><br/>
+	</div>
+</div>

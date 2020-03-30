@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="row persistent-buttons" th:fragment="dans-default-buttons">
+	<div class="col-xs-8 col-md-10">
+		<a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_back'}" id="back_button11" class="btn btn-default hidden-print" data-toggle="tooltip" data-placement="bottom" title="" style="display: inline-block;" data-original-title="Go back one step"><i class="fa fa-arrow-left"></i> Back</a>
+		<a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_home'}" id="restart_button11" class="btn btn-default hidden-print persistent-button" data-toggle="tooltip" data-placement="bottom" title="" style="display: inline-block;" data-original-title="Restart from the beginning">Restart</a>
+		<span th:if="${dataTagInfoHolder.persist}"><a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_confirm'}" id="confirm_button" class="btn btn-default hidden-print persistent-button" data-toggle="tooltip" data-placement="bottom" title="" style="display: inline-block;" data-original-title="Confirm">Confirm</a></span>
+		<br/><br/>
+	</div>
+</div>

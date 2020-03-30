@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+<!--	<var name="dataTags" class="nl.knaw.dans.datatags.service.generated.model.DataTagSchemaNode"/>-->
+	<var name="dataTagInfoHolder" class="nl.knaw.dans.datatags.service.core.model.DataTagInfoHolder"/>
+<!--	<var name="qa" class="nl.knaw.dans.datatags.service.core.model.QA"/>-->
+
+	<!-- returning and adding inside flow registerModel instance -->
+	<on-start>
+		<evaluate expression="dataTagsHandler.init()"
+			result="flowScope.registerModel" />
+	</on-start>
+
+	<!-- is the start state -->
+	<!--	step 1 -->
+	<view-state id="iqss.v1.s1-requirement" view="flows/iqss/v1/s1-requirement" model="dataTagInfoHolder">
+		<on-entry>
+			<evaluate expression="dataTagsHandler.initDataTagInfoHolder(flowScope.registerModel, flowRequestContext, dataTagInfoHolder, 'doi;101123/abcd')"/>
+		</on-entry>
+		<transition on="anyone" to="iqss.v1.s2-dua"/>
+		<transition on="authenticated" to="iqss.v1.s2-dua"/>
+		<transition on="approved" to="iqss.v1.s2-dua"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+			<evaluate expression="dataTagsHandler.determineTag(flowScope.registerModel, flowRequestContext)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 2 -->
+	<view-state id="iqss.v1.s2-dua" view="flows/iqss/v1/s2-dua" model="dataTagInfoHolder">
+		<transition on="back" to="iqss.v1.s1-requirement"/>
+		<transition on="open" to="iqss.v1.s3-dua-am"/>
+		<transition on="standard" to="iqss.v1.s3-dua-am" />
+		<transition on="custom" to="iqss.v1.s3-dua-am"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+			<evaluate expression="dataTagsHandler.determineTag(flowScope.registerModel, flowRequestContext)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 3 -->
+	<view-state id="iqss.v1.s3-dua-am" view="flows/iqss/v1/s3-dua-am" model="dataTagInfoHolder">
+		<transition on="back" to="iqss.v1.s2-dua"/>
+		<transition on="implied" to="iqss.v1.s4-storage"/>
+		<transition on="clickThrough" to="iqss.v1.s4-storage" />
+		<transition on="signed" to="iqss.v1.s4-storage"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+			<evaluate expression="dataTagsHandler.determineTag(flowScope.registerModel, flowRequestContext)"/>
+		</on-exit>
+	</view-state>
+	<!--	step 4 -->
+	<view-state id="iqss.v1.s4-storage" view="flows/iqss/v1/s4-storage" model="dataTagInfoHolder">
+		<transition on="back" to="iqss.v1.s3-dua-am"/>
+		<transition on="encrypted" to="iqss.v1.s5-affirm"/>
+		<transition on="clear" to="iqss.v1.s5-affirm" />
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+			<evaluate expression="dataTagsHandler.determineTag(flowScope.registerModel, flowRequestContext)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 5 -->
+	<view-state id="iqss.v1.s5-affirm" view="flows/iqss/v1/s5-affirm" model="dataTagInfoHolder">
+		<on-entry>
+			<evaluate expression="dataTagsHandler.calculateTag(flowScope.registerModel, 'iqss.v1.tag')" />
+		</on-entry>
+		<transition on="back" to="iqss.v1.s4-storage"/>
+		<transition on="confirm" to="iqss.v1.action-confirm"/>
+<!--		<on-exit>-->
+<!--			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>-->
+<!--			<evaluate expression="dataTagsHandler.determineTag(flowScope.registerModel, flowRequestContext)"/>-->
+<!--			<evaluate expression="dataTagsHandler.calculateTag(flowScope.registerModel, 'iqss.v1.tag')" />-->
+<!--		</on-exit>-->
+	</view-state>
+
+	<action-state id="iqss.v1.action-confirm">
+		<evaluate expression="dataTagsHandler.confirm(flowScope.registerModel)" />
+		<transition on="success" to="end-point" />
+		<transition on="error-408" to="end-point-error-408" />
+	</action-state>
+
+	<!-- end point -->
+
+	<end-state id="end-point-error-408" view="flows/iqss/v1/end-point-error-408"/>
+	<end-state id="end-point" view="flows/dans/v1/end-point-tag"/>
+	<end-state id="view-error" view="flows/dans/v1/error" />
+
+
+	<!-- Global Transition -->
+	<global-transitions>
+		<transition on="home" to="iqss.v1.s1-requirement" validate="false" />
+		<transition on="error" to="iqss.v1.view-error" validate="false" />
+	</global-transitions>
+
+
+</flow>

@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/dans/v1/head :: head(title='DataTags Service')"/>
+<body class="zingtree">
+<div id="visual-portal-wrapper" class="container">
+	<!-- content -->
+	<div id="content" class="set1">
+
+		<!-- header -->
+		<header th:replace="fragments/dans/v1/header"/>
+		<!-- /header -->
+
+		<div id="main" role="main">
+			<h1 th:text="#{dans.v1.s3-disclaimer.title}"/>
+			<div class="widewrapper main">
+				<div class="container">
+					<div style="display: block;padding=0px;margin-right:70px;!important;">
+						<div class="row">
+							<div class="col-md-12">
+								<h2 th:text="#{dans.v1.s3-disclaimer.subtitle}"/>
+								<p th:utext="#{dans.v1.s3-disclaimer.contentText}"/>
+								<br/>
+								<div id="qa-area1" class="well button-node-question">
+										<div class="row" align="center">
+											<form method="post" th:object="${dataTagInfoHolder}">
+												<div class="answers"><div class="col-md-offset-3 col-md-6 col-sm-12">
+													<button type="submit" class="btn btn-lg btn-zingtree btn-block btn-primary " name="_eventId_next"><span th:utext="#{dans.v1.s3-disclaimer.next}"/></button><br></div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<footer th:replace="fragments/dans/v1/default-buttons"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer th:replace="fragments/dans/v1/footer"/>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>

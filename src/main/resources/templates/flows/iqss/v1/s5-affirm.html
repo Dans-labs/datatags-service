@@ -1,0 +1,102 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/iqss/v1/head :: head(title='DataTags Service')"/>
+<body onload="noBack();"
+	  onpageshow="if (event.persisted) noBack();" onunload="">
+
+<div class="container" id="content">
+
+
+	<div class="row">
+		<div class="col">
+			<h2>Interview Transcript - Affirmation</h2>
+			Model <strong>DataverseTags version 3</strong>
+		</div>
+	</div>
+
+	<div class="row my-2">
+		<div class="col transcript">
+
+			<div class="card border-info questionPanel">
+				<div class="question">
+					<div class="text">
+						<p th:utext="#{iqss.v1.s1-requirement.question}"/>
+						<h5>Terms</h5>
+						<ul>
+							<li>
+								<p><em>registered users</em>: Users with a dataverse account.</p>
+							</li>
+							<li>
+								<p><em>approved users</em>: Users who have requested to access the data, and whose request has been approved.</p>
+							</li>
+						</ul>
+					</div>
+					<div th:if="${dataTagInfoHolder.provenanceContainer.questionAnswerList[0].note !=''}" class="questionSection questionSectionNote">
+						<h6>Note</h6>
+						<div class="text">
+							<span th:utext="${dataTagInfoHolder.provenanceContainer.questionAnswerList[0].note}"/>
+						</div>
+					</div>
+						<div class="questionSection questionSectionAnswer">
+							<h6>Answer</h6>
+							<div class="text">
+								<span th:utext="${dataTagInfoHolder.provenanceContainer.questionAnswerList[0].answer}"/>
+							</div>
+						</div>
+				</div>
+				<div class="question">
+					<div class="text">
+						<p th:utext="#{iqss.v1.s2-dua.question}"/>
+						<h5>Terms</h5>
+						<ul>
+							<li><em>DUA</em>: Data use agreement.</li>
+						</ul>
+					</div>
+					<div class="questionSection questionSectionAnswer">
+						<h6>Answer</h6>
+						<div class="text">
+							<span th:utext="${dataTagInfoHolder.provenanceContainer.questionAnswerList[1].answer}"/>
+						</div>
+					</div>
+				</div>
+				<div class="question">
+					<div class="text">
+						<p th:utext="#{iqss.v1.s3-dua-am.question}"/>
+						<h5>Terms</h5>
+						<ul>
+							<li><em>implied</em>: The user accepts the terms by using Dataverse.</li>
+						</ul>
+					</div>
+					<div class="questionSection questionSectionAnswer">
+						<h6>Answer</h6>
+						<div class="text">
+							<span th:utext="${dataTagInfoHolder.provenanceContainer.questionAnswerList[2].answer}"/>
+						</div>
+					</div>
+				</div>
+				<div class="question">
+					<div class="text">
+						<p th:utext="#{iqss.v1.s4-storage.question}"/>
+					</div>
+					<div class="questionSection questionSectionAnswer">
+						<h6>Answer</h6>
+						<div class="text">
+							<span th:utext="${dataTagInfoHolder.provenanceContainer.questionAnswerList[3].answer}"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col my-2 text-center">
+<!--				<span th:utext="${dataTagInfoHolder.provenanceContainer.tag}"/>-->
+				<p th:if="${#strings.toString(dataTagInfoHolder.provenanceContainer.tag)} == 'BLUE'" th:utext="#{iqss.v1.tag.image.blue}"/>
+				<p th:if="${#strings.toString(dataTagInfoHolder.provenanceContainer.tag)} == 'GREEN'" th:utext="#{iqss.v1.tag.image.green}"/>
+				<p th:if="${#strings.toString(dataTagInfoHolder.provenanceContainer.tag)} == 'ORANGE'" th:utext="#{iqss.v1.tag.image.orange}"/>
+			</div>
+			<footer th:replace="fragments/iqss/v1/default-confirm-buttons"/>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>

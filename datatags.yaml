@@ -1,0 +1,244 @@
+openapi: 3.0.0
+info:
+  description: |
+    DataTags Service.  You can find
+    out more about DataTags Servuce at
+    [http://swagger.io](http://swagger.io) or on
+    [irc.freenode.net, #swagger](http://swagger.io/irc/).
+  version: "1.0.0"
+  title: DataTags Service
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: eko.indarto@dans.knaw.nl
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: DataTags API Auto Mocking
+    url: http://localhost:8888/v1
+  - url: 'http://localhost:8888/v1'
+tags:
+  - name: DataTags
+    description: Everything about your DataTags
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: user
+    description: Operations about user
+    externalDocs:
+      description: Find out more about our store
+      url: 'http://swagger.io'
+paths:
+  /tag-my-file/{schema-name}/{version}:
+    get:
+      tags:
+        - DataTags
+      summary: Add a new tag to the file
+      operationId: addTag
+      parameters:
+        - name: schema-name
+          in: path
+          required: true
+          description: todo
+          schema:
+            type: string
+            example: dans
+        - name: version
+          in: path
+          description: todo
+          required: true
+          schema:
+            type: string
+            example: v1
+        - name: sourceUrl
+          in: header
+          description: The url of Dataverse/B2Share
+          required: true
+          schema:
+            type: string
+        - name: sourceKey
+          in: header
+          description: The key to post end result from DataTags service
+          required: false
+          schema:
+            type: string
+        - name: sourcePid
+          in: query
+          description: The source pid of object
+          required: true
+          schema:
+            type: string
+            example: "doi:10.5072/abc/defgh123"
+        - name: nodeName
+          in: query
+          description: todo
+          required: true
+          schema:
+            type: string
+            example: s2-personal-info
+        - name: answer
+          in: query
+          description: todo
+          required: true
+          schema:
+            type: string
+            example: Yes, I have anonymised my dataset
+        - name: fileId
+          in: query
+          description: todo
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: DataTags Question response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataTagSchemaNode'
+
+        '405':
+          description: Invalid input
+      # security:
+      #   - api_key: []
+      # requestBody:
+      #   $ref: '#/components/requestBodies/DataTagSchemaProgres'
+
+    post:
+      tags:
+        - DataTags
+      summary: add tempory api key token
+      operationId: saveTemporaryApiToken
+      parameters:
+        - name: schema-name
+          in: path
+          required: true
+          description: todo
+          schema:
+            type: string
+            example: dans
+        - name: version
+          in: path
+          description: todo
+          required: true
+          schema:
+            type: string
+            example: v1
+      requestBody:
+        $ref: '#/components/requestBodies/UserData'
+      responses:
+        '200':
+          description: ok
+        '400':
+          description: invalid input
+
+            # delete:
+            #   tags:
+            #     - DataTags
+            #   summary: Delete temporary
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  schemas:
+    DataTagSchemaProgress:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: DANS DataTags
+        version:
+          type: string
+          example: v1
+        pidUrl:
+          type: string
+          example: http://ergens.io/123
+        # expireTime:
+        #   type: string
+        #   format: date-time
+        questionNodeName:
+          type: string
+          example: dans-s2-personal-info-view
+        answer:
+          type: string
+
+    Action:
+      type: object
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        target:
+          type: string
+
+    QA:
+      type: object
+      properties:
+        question:
+          type: string
+        answer:
+          type: string
+
+
+    DataTagSchemaNode:
+      type: object
+      properties:
+        nodeName:
+          type: string
+        # expireTime:
+        #   type: string
+        #   format: date-time
+        title:
+          type: string
+        subTitle:
+          type: string
+        contentText:
+          type: string
+        question:
+          type: string
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+        qaList:
+          type: array
+          items:
+            $ref: '#/components/schemas/QA'
+    UserData:
+      type: object
+      properties:
+        objectPid:
+          type: string
+          description: The pid of the source object.
+          example: doi:123/abcdefg
+        apiKey:
+          type: string
+        sourceUrl:
+          type: string
+          example: https://dataverse.nl
+        # validDuration:
+        #   description: seconds with maximum 3600 seconds, if 0 means determine by the default datatags server
+        #   type: integer
+        #   format: int32
+
+  requestBodies:
+    UserData:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserData'
+      description: Security object that needs to be added to the
+      required: true
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

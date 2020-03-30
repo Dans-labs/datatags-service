@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+<!--	<var name="dataTags" class="nl.knaw.dans.datatags.service.generated.model.DataTagSchemaNode"/>-->
+	<var name="dataTagInfoHolder" class="nl.knaw.dans.datatags.service.core.model.DataTagInfoHolder"/>
+
+	<!-- returning and adding inside flow registerModel instance -->
+	<on-start>
+		<evaluate expression="dataTagsHandler.init()"
+			result="flowScope.registerModel" />
+	</on-start>
+
+	<!-- is the start state -->
+	<!--	step 1 -->
+	<view-state id="dans.v1.home" view="flows/dans/v1/s1-start" model="dataTagInfoHolder">
+		<on-entry>
+			<evaluate expression="dataTagsHandler.initDataTagInfoHolder(flowScope.registerModel, flowRequestContext, dataTagInfoHolder, 'hdl:10411/imka4002')"/>
+		</on-entry>
+		<transition on="next" to="dans.v1.s2-personal-info"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 2 -->
+	<view-state id="dans.v1.s2-personal-info" view="flows/dans/v1/s2-personal-info" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.home"/>
+		<transition on="no" to="dans.v1.tag-blue"/>
+		<transition on="yes" to="dans.v1.s3-disclaimer" />
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+	<!-- tags -->
+	<view-state id="dans.v1.tag-blue" view="flows/dans/v1/tag-blue" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s2-personal-info"/>
+		<transition on="confirm" to="dans.v1.action-confirm-tag"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.setTag(flowScope.registerModel, 'BLUE', '#184BE8')"></evaluate>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 3 -->
+	<view-state id="dans.v1.s3-disclaimer" view="flows/dans/v1/s3-disclaimer" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s2-personal-info"/>
+		<transition on="next" to="dans.v1.s4-anonymised-data"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 4 -->
+	<view-state id="dans.v1.s4-anonymised-data" view="flows/dans/v1/s4-anonymised-data" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s3-disclaimer"/>
+		<transition on="yes" to="dans.v1.tag-green"/>
+		<transition on="no" to="dans.v1.s5-consent" />
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+	<view-state id="dans.v1.tag-green" view="flows/dans/v1/tag-green" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s4-anonymised-data"/>
+		<transition on="confirm" to="dans.v1.action-confirm-tag"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.setTag(flowScope.registerModel, 'GREEN', '#26CE1C')"></evaluate>
+		</on-exit>
+	</view-state>
+
+	<!--	step 5-->
+	<view-state id="dans.v1.s5-consent" view="flows/dans/v1/s5-consent" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s4-anonymised-data"/>
+		<transition on="yes" to="dans.v1.s6-purpose-definition"/>
+		<transition on="no" to="dans.v1.end-point-notag-no-consent" />
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+	<view-state id="dans.v1.end-point-notag-no-consent" view="flows/dans/v1/end-point-notag-no-consent" >
+		<transition on="back" to="dans.v1.s5-consent"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 6-->
+	<view-state id="dans.v1.s6-purpose-definition" view="flows/dans/v1/s6-purpose-definition" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s5-consent"/>
+		<transition on="yes" to="dans.v1.s7-appropriate-safeguards"/>
+		<transition on="no" to="dans.v1.end-point-notag-consent-unclear-purpose" />
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+	<view-state id="dans.v1.end-point-notag-consent-unclear-purpose" view="flows/dans/v1/end-point-notag-consent-unclear-purpose" >
+		<transition on="home" to="dans.v1.home"/>
+		<transition on="back" to="dans.v1.s6-purpose-definition"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 7-->
+	<view-state id="dans.v1.s7-appropriate-safeguards" view="flows/dans/v1/s7-appropriate-safeguards" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s6-purpose-definition"/>
+		<transition on="yes" to="dans.v1.s8-special-categories"/>
+		<transition on="no" to="dans.v1.end-point-notag-consent-purpose-no-measures"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+	<view-state id="dans.v1.end-point-notag-consent-purpose-no-measures" view="flows/dans/v1/end-point-notag-consent-purpose-no-measures" >
+		<transition on="back" to="dans.v1.s7-appropriate-safeguards"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+
+	<!--	step 8 -->
+	<view-state id="dans.v1.s8-special-categories" view="flows/dans/v1/s8-special-categories" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s7-appropriate-safeguards"/>
+		<transition on="yes" to="dans.v1.tag-red"/>
+		<transition on="no" to="dans.v1.tag-orange" />
+		<on-exit>
+			<evaluate expression="dataTagsHandler.addQA(flowScope.registerModel, flowRequestContext, dataTagInfoHolder)"/>
+		</on-exit>
+	</view-state>
+	<!-- tags -->
+	<view-state id="dans.v1.tag-red" view="flows/dans/v1/tag-red" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s8-special-categories"/>
+		<transition on="confirm" to="dans.v1.action-confirm-tag"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.setTag(flowScope.registerModel, 'RED', '#FB1E1E')"></evaluate>
+		</on-exit>
+	</view-state>
+	<view-state id="dans.v1.tag-orange" view="flows/dans/v1/tag-orange" model="dataTagInfoHolder">
+		<transition on="back" to="dans.v1.s8-special-categories"/>
+		<transition on="confirm" to="dans.v1.action-confirm-tag"/>
+		<on-exit>
+			<evaluate expression="dataTagsHandler.setTag(flowScope.registerModel, 'ORANGE', '#FFA500')"></evaluate>
+		</on-exit>
+	</view-state>
+
+	<action-state id="dans.v1.action-confirm-tag">
+		<evaluate expression="dataTagsHandler.confirm(flowScope.registerModel)" />
+		<transition on="success" to="dans.v1.end-point" />
+		<transition on="error-408" to="end-point-error-408" />
+	</action-state>
+
+	<end-state id="end-point-error-408" view="flows/dans/v1/end-point-error-408"/>
+	<end-state id="dans.v1.end-point" view="flows/dans/v1/end-point-tag"/>
+	<end-state id="dans.v1.view-error" view="flows/dans/v1/error" />
+
+
+	<!-- Global Transition -->
+	<global-transitions>
+		<transition on="home" to="dans.v1.home" validate="false" />
+		<transition on="error" to="dans.v1.view-error" validate="false" />
+	</global-transitions>
+
+
+</flow>

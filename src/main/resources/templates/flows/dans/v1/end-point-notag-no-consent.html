@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/dans/v1/head :: head(title='DataTags Service')"/>
+<body class="zingtree">
+<div id="visual-portal-wrapper" class="container">
+	<!-- content -->
+	<div id="content" class="set1">
+
+		<!-- header -->
+		<header th:replace="fragments/dans/v1/header"/>
+		<!-- /header -->
+
+		<div id="main" role="main">
+			<h1 th:text="#{dans.v1.end-point-notag-no-consent.title}"/>
+			<div class="widewrapper main">
+				<div class="container">
+					<div style="display: block;padding=0px;margin-right:70px;!important;">
+						<div class="row">
+							<div class="col-md-12">
+								<h2 th:text="#{dans.v1.end-point-notag-no-consent.subtitle}"/>
+								<p th:utext="#{dans.v1.end-point-notag-no-consent.contentText}"/>
+								<br/>
+							</div>	
+						</div>
+						<footer th:replace="fragments/dans/v1/default-buttons"/>
+					</div>
+				</div>
+			</div>
+			<footer th:replace="fragments/dans/v1/footer"/>
+		</div>
+	</div>
+</div>
+</body>
+</html>
