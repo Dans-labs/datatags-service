@@ -178,7 +178,7 @@ table td { vertical-align: top; }
 ====================================================================== */
 #footer { background: #767676; padding: 20px; font-size: 11px; color: white; }
 #footer a { color: white; }
-#footer h3 { font-size: 12px; font-weight: 600; margin-top: 0; text-transform: uppercase; }
+#footer h3 { font-size: 12px; font-weight: 600; margin-top: 0; text-transform: uppercase;color: #FFF; text-align: left;}
 #footer .social { margin: 0; margin-top: 22px; padding: 0; list-style: none; }
 #footer .social > li { margin-bottom: 3px; }
 #footer .social i { width: 24px; padding: 0; text-align: center; font-size: 1.5em; margin-right: 5px; }
