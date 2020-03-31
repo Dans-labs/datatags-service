@@ -15,8 +15,8 @@ public class SwaggerDocumentationConfig {
 
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("DataTags Service")
-            .description("DataTags Service.  You can find out more about DataTags Servuce at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/). ")
+            .title("DANS DataTags Service")
+            .description("DANS DataTags Service. You can find out more about DataTags Servuce at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/). ")
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .termsOfServiceUrl("")
