@@ -26,11 +26,11 @@ In the sections below more details are provided about:
     *   [swagger-codegen](https://github.com/swagger-api/swagger-codegen)
     *   [Spring Boot](https://spring.io/projects/spring-boot)
     *   [Spring WebFlow](https://docs.spring.io/spring-webflow/docs/current/reference/htmlsingle/)
-*   [DataTags Scheme](#datatags-scheme)
-    *   [DANS DataTags Scheme](#datatags-scheme-dans)
-*   [DataTags Scheme Creator(GUI)](#datatags-scheme-creator)
-    *   [Creating DataTags Scheme using Zinktree](https://zingtree.com/)
-    *   [Creating DataTags Scheme using yEd Graph Editor](https://www.yworks.com/products/yed)
+*   [DataTags Schema](#datatags-schema)
+    *   [DANS DataTags Schema](#datatags-schema-dans)
+*   [DataTags Schema Creator(GUI)](#datatags-schema-creator)
+    *   [Creating DataTags Schema using Zinktree](https://zingtree.com/)
+    *   [Creating DataTags Schema using yEd Graph Editor](https://www.yworks.com/products/yed)
 *   [Push Plugins]()
 *   [Dockerizing the DataTags Service](#datatags-service-docker)
 *   [Deploying, Running and Using DataTags Service on Kubernetes](#datatags-kubernetes)
@@ -47,19 +47,19 @@ In the sections below more details are provided about:
 
 ### Frameworks
 
-### <a name="datatags-scheme-dans"></a>DANS DataTags Scheme
-![DANS DataTags Scheme](readme-imgs/Datatags-2nd-prototype.jpg "DANS DataTags Scheme")
-![DANS DataTags UI](readme-imgs/DANS-DataTags-Scheme.png "DANS DataTags UI")
+### <a name="datatags-schema-dans"></a>DANS DataTags Schema
+![DANS DataTags Schema](readme-imgs/Datatags-2nd-prototype.jpg "DANS DataTags Schema")
+![DANS DataTags UI](readme-imgs/DANS-DataTags-Schema.png "DANS DataTags UI")
 
 
 
-### <a name="datatags-scheme-creator-zinktree"></a>Zinktree Visual Designer
+### <a name="datatags-schema-creator-zinktree"></a>Zinktree Visual Designer
 
-![Zinktree DataTags Scheme](readme-imgs/zinktree-visual-designer.png "Zingtree DataTags Scheme Creator")
+![Zinktree DataTags Schema](readme-imgs/zinktree-visual-designer.png "Zingtree DataTags Schema Creator")
 
-### <a name="datatags-scheme-creator-yed"></a>yEd Graph Editor
+### <a name="datatags-schema-creator-yed"></a>yEd Graph Editor
 
-![Zinktree DataTags Scheme](readme-imgs/yed-designer.png "Zingtree DataTags Scheme Creator")
+![Zinktree DataTags Schema](readme-imgs/yed-designer.png "Zingtree DataTags Schema Creator")
 
 ### <a name="datatags-connection"></a>Connection to DataTag Service
 

@@ -23,13 +23,13 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/schema")
     public String index(Model model) {
-        model.addAttribute("message", "DataTags Scheme");
+        model.addAttribute("message", "DataTags Schema");
         return "index";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/error")
     public String error(Model model) {
-        model.addAttribute("message", "DataTags Scheme");
+        model.addAttribute("message", "DataTags Schema");
         return "error";
     }
 

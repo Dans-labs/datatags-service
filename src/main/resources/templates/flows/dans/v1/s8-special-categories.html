@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/dans/v1/head :: head(title='DataTags Service')"/>
-<body class="zingtree">
+<body>
 <div id="visual-portal-wrapper" class="container">
 	<!-- content -->
 	<div id="content" class="set1">
@@ -29,7 +29,7 @@
 									</div>
 									<div class="row" align="center">
 										<form method="post" th:object="${dataTagInfoHolder}">
-											<div class="answers"><div class="col-sm-6"><button type="submit" class="btn btn-lg btn-zingtree btn-block btn-primary " name="_eventId_yes"><span th:utext="#{dans.v1.s8-special-categories.yes}"/></button><br></div><div class="col-sm-6"><button type="submit" class="btn btn-lg btn-zingtree btn-block btn-primary " name="_eventId_no"><span th:utext="#{dans.v1.s8-special-categories.no}"/></button></div></div>
+											<div class="answers"><div class="col-sm-6"><button type="submit" class="btn btn-lg btn-dts btn-block btn-primary " name="_eventId_yes"><span th:utext="#{dans.v1.s8-special-categories.yes}"/></button><br></div><div class="col-sm-6"><button type="submit" class="btn btn-lg btn-dts btn-block btn-primary " name="_eventId_no"><span th:utext="#{dans.v1.s8-special-categories.no}"/></button></div></div>
 										</form>
 									</div>
 								</div>
