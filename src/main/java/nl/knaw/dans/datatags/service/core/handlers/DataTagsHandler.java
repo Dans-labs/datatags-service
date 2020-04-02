@@ -41,6 +41,7 @@ public class DataTagsHandler {
         return new RegisterModel();
     }
     public void initDataTagInfoHolder(RegisterModel registerModel, RequestContext requestContext, DataTagInfoHolder dti, String dataTagSchemeVersion) {
+        LOG.debug("start");
         ProvenanceContainer pc = initProvenanceContainer( requestContext, dataTagSchemeVersion);
 //        Can I control the HTTP headers sent by window.open (cross browser)? NO!
         String encodedEncryptedQ = requestContext.getRequestParameters().get("q");
@@ -143,6 +144,7 @@ public class DataTagsHandler {
             for (Long fileId : fileids) {
                 fid += "id=" + fileId + "&";
             }
+            LOG.debug(fid);
             String targetPostMetadataUrl = dataTagInfoHolder.getQueryParams().getSourceUrl() + "/api/files/datatags-json?" + fid + "expiredDateTime=" + dataTagInfoHolder.getQueryParams().getExpiredDateTime() ;
             LOG.debug(targetPostMetadataUrl);
             DataTagsHelper dth = new DataTagsHelper(targetPostMetadataUrl, dataTagInfoHolder.getQueryParams().getApiKey(),jsonString);
