@@ -21,11 +21,11 @@
 								<span th:if="${dataTagInfoHolder.queryParams.version != 'null'}">
 									<p th:text="${dataTagInfoHolder.jsonProvenance}">TODO HERE</p>
 <!--								<a target="_self" th:href="${dataTagInfoHolder.queryParams.sourceUrl + '/dataset.xhtml?persistentId=' + dataTagInfoHolder.queryParams.persistentId + '&version=' + dataTagInfoHolder.queryParams.version}"><span th:text="${dataTagInfoHolder.queryParams.persistentId}"/></a>-->
-								<a target="_self" th:href="${'http://localhost:8080/dataset.xhtml?persistentId=' + dataTagInfoHolder.queryParams.persistentId + '&version=' + dataTagInfoHolder.queryParams.version}"><span th:text="${dataTagInfoHolder.queryParams.persistentId}"/></a>
+								<a target="_self" th:href="${'https://speeltuin.dataverse.tk/dataset.xhtml?persistentId=' + dataTagInfoHolder.queryParams.persistentId + '&version=' + dataTagInfoHolder.queryParams.version}"><span th:text="${dataTagInfoHolder.queryParams.persistentId}"/></a>
 								</span>
 								<span th:if="${dataTagInfoHolder.queryParams.version == 'null'}">
 <!--									<a target="_self" th:href="${dataTagInfoHolder.queryParams.sourceUrl + '/dataset.xhtml?persistentId=' + dataTagInfoHolder.queryParams.persistentId + '&version=' + dataTagInfoHolder.queryParams.version}"><span th:text="${dataTagInfoHolder.queryParams.persistentId}"/></a>-->
-								<a target="_self" th:href="${'http://localhost:8080/dataset.xhtml?persistentId=' + dataTagInfoHolder.queryParams.persistentId }"><span th:text="${dataTagInfoHolder.queryParams.persistentId}"/></a>
+								<a target="_self" th:href="${'https://speeltuin.dataverse.tk/dataset.xhtml?persistentId=' + dataTagInfoHolder.queryParams.persistentId }"><span th:text="${dataTagInfoHolder.queryParams.persistentId}"/></a>
 								</span>
 							</div>
 						</div>

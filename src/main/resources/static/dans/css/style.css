@@ -566,8 +566,8 @@ div#pb_1 div.close { display: block; }
 /* Retina displays
 ====================================================================== */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) { .icon { background-image: url(../images/icons/icons@2x.png); }
-  #header .navbar-brand { background-size: 148px 34px; background-image: url(http://localhost:8080/dans/images/logo-xs@2x.png); }
-  #footer .about a { background-size: 160px 45px; background-image: url(http://localhost:8080/dans/images/icons/about@2x.png); } }
+  #header .navbar-brand { background-size: 148px 34px; background-image: url(https://dts.dataverse.tk/dans/images/logo-xs@2x.png); }
+  #footer .about a { background-size: 160px 45px; background-image: url(https://dts.dataverse.tk/dans/images/icons/about@2x.png); } }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 768px), only screen and (min--moz-device-pixel-ratio: 2) and (min-width: 768px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (min-width: 768px), only screen and (min-device-pixel-ratio: 2) and (min-width: 768px), only screen and (min-resolution: 192dpi) and (min-width: 768px), only screen and (min-resolution: 2dppx) and (min-width: 768px) { #header .navbar-brand { background-size: 255px 56px; background-image: url(../images/logo@2x.png); } }
 /* Animations
 ====================================================================== */
