@@ -27,6 +27,12 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/about")
+    public String about(Model model) {
+        model.addAttribute("message", "Todo: About DataTags");
+        return "about";
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/error")
     public String error(Model model) {
         model.addAttribute("message", "DataTags Schema");
