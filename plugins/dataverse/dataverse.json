@@ -3,5 +3,5 @@
   "target-url":"https://speeltuin.dataverse.tk/api/datatag",
   "action-class-name": "nl.knaw.dans.datatags.plugin.DataversePlugin",
   "action-class-url": "lib/datatags-plugin-dataverse-1.0-jar-with-dependencies.jar",
-  "encrypted-password-location": "/Users/akmi/dts/pwd"
+  "encrypted-password-location": "/Users/akmi/dts/pwd-encrypted"
 }
