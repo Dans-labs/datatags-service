@@ -1,11 +1,14 @@
 package nl.knaw.dans.datatags.service.core.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 import org.springframework.core.Ordered;
+import org.springframework.core.env.Environment;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,11 +28,21 @@ import org.thymeleaf.spring5.webflow.view.AjaxThymeleafViewResolver;
 import org.thymeleaf.spring5.webflow.view.FlowAjaxThymeleafView;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 @Configuration
 public class WebFlowWithMvcConfig extends AbstractFlowConfiguration {
-
+    private static final Logger LOG = LoggerFactory.getLogger(WebFlowWithMvcConfig.class);
+    private static final List<?> pluginList = new ArrayList<>();
+    @Autowired
+    Environment env;
+    
     @Autowired
     private LocalValidatorFactoryBean localValidatorFacotryBean;
 
@@ -127,6 +140,42 @@ public class WebFlowWithMvcConfig extends AbstractFlowConfiguration {
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return bean;
+    }
+
+    //TODO: Using plugins mechanism
+    private void registerPlugins(){
+        LOG.info("#                                                             #");
+        LOG.info("#                 Trying to register plugin...                #");
+//        try {
+            //Eko says: of course we should check many thing here, eq: dir exist, files extension, structures, etc!
+            //Checking whether the plugins directory exist or not, is already done by checkingRequiredDirs();
+            File pluginsBaseDir = new File(Objects.requireNonNull(env.getProperty("bridge.plugins.dir")));
+            File pluginsDir[] = pluginsBaseDir.listFiles(pathname -> !pathname.isFile());
+            if (pluginsDir != null) {
+                for (File darPluginDir : pluginsDir) {
+//                    DarPluginConf darPluginConf = PluginRegisterService.attachDarPlugin(darPluginDir);
+//                    if (darPluginConf == null) break;
+//
+//                    pluginList.add(darPluginConf);
+                }
+            }
+
+            LOG.info("# Number of plugin: {}", pluginList.size());
+
+//        } catch (MalformedURLException e) {
+//            LOG.error("Fail to start the DataTags Service.....");
+//            LOG.error("MalformedURLException, cause by: {}", e.getMessage());
+//            System.exit(1);
+//        } catch (FileNotFoundException e) {
+//            LOG.error("Fail to start the DataTags Service.....");
+//            LOG.error("plugins directory doesn't exist" );
+//            LOG.error("FileNotFoundException, cause by: {}", e.getMessage());
+//            System.exit(1);//Yes, the application will terminated!
+//        }
+        if (pluginList.isEmpty()) {
+            LOG.warn("No plugin is registered. Adding at least one plugin is required, otherwise you cannot use this application");
+            LOG.warn("Adding plugin can be done by uploading the plugins in zip format through bridge api");
+        }
     }
 
 //    @Bean

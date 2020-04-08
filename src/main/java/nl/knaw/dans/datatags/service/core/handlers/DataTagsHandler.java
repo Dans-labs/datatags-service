@@ -42,6 +42,7 @@ public class DataTagsHandler {
     }
     public void initDataTagInfoHolder(RegisterModel registerModel, RequestContext requestContext, DataTagInfoHolder dti, String dataTagSchemeVersion) {
         LOG.debug("start");
+        //TODO: Using plugins mechanism
         ProvenanceContainer pc = initProvenanceContainer( requestContext, dataTagSchemeVersion);
 //        Can I control the HTTP headers sent by window.open (cross browser)? NO!
         String encodedEncryptedQ = requestContext.getRequestParameters().get("q");
@@ -131,6 +132,7 @@ public class DataTagsHandler {
     }
 
     public String confirm(RegisterModel registerModel) {
+        //TODO: Using plugins mechanism
         DataTagInfoHolder dataTagInfoHolder = registerModel.getDataTagInfoHolder();
         if(dataTagInfoHolder.isPersist()) {
         ObjectMapper mapper = new ObjectMapper();
