@@ -41,7 +41,7 @@ In the sections below more details are provided about:
 *   [iRODS Rules Output](https://irods.org/)
 
 ### <a name="datatags-architecture"></a>Architecture
-[DataTagse-Architecture](readme-imgs/Datatags-Architecture.png "DataTags Service")
+![DataTagse-Architecture](readme-imgs/Datatags-Architecture.png "DataTags Service")
 The design of the Data Tags Recommendation Service is based on OpenAPI 3.0 specification, Plugins-based architecture and in a generic and reusable way.
 The service uses [Spring Boot](https://spring.io/projects/spring-boot) framework that is generated from Open API 3.0 specification by using the [swagger-codegen](https://github.com/swagger-api/swagger-codegen). 
 The plugins mechanism is based on the [Java reflection API](https://docs.oracle.com/javase/tutorial/reflect/) that allows [runtime type introspections](https://en.wikipedia.org/wiki/Type_introspection). This increase the flexibility and the application can be dynamically extended to include new features.
