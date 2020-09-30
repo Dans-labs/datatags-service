@@ -114,25 +114,30 @@ Watch DataTags Recommendation Service Tool in action on [dtrs-demo.dataverse.tk]
 The following configuration has to implemented on any application that uses the DataTag Recommendation Tool.
 
         {
-            "dataTagServiceUrl": "http://localhost:8888/dans/v1", 
+            "dataTagServiceUrl": "https://dtrs-demo.dataverse.tk/dans/v1", 
             "encryptKey": "@km1-10Dec04",
             "validity-duration": 600   
         }
  
  - dataTagServiceUrl is the URL of the schema
- - encryptKey is a key that Dataverse dan DTRS use to encryp and decrypt
+ - encryptKey is a key that Dataverse dan DTRS use to encrypt and decrypt the connection
  - validity-duration is the number of seconds that the DTRS links is valid.
  
  #### <a name="datatags-b2share"></a>Connection to Dataverse
  The Dataverse connection to DataTags Recommendation Tool is implemented on [Dataverse v4.19-dans-datatags](https://github.com/ekoi/dataverse/tree/v4.19-dans-datatags)
 
  ![DataTags Dataverse Popup](readme-imgs/datatags-dataverse-popup.png "DataTags Dataverse Popup")
- This prototype implementation does not enforce security measures that are relevant for the obtained tag. It is just to inform the depositor about the level of sensitivity of the data. It 
+ 
+ This prototype implementation does not enforce security measures that are relevant for the obtained tag. It is just to inform the depositor about the level of sensitivity of the data. 
 
  ![DataTags Dataverse Result](readme-imgs/datatags-dataverse-result.png "DataTags Dataverse Result")
  
  
- ### <a name="datatags-provenance"></a>Provenance    
+ ### <a name="datatags-provenance"></a>Provenance
+ Provenance information of Tagged result which is the version of the DataTags Schema and the timestamp of the created tag. This includes information about the chosen answers and its questions.
+ 
+ ![DataTags Prov](readme-imgs/datatags-prov.png "DataTags Prov")
+
  
  ### <a name="datatags-irods"></a>iRODS Rules Output
  (TODO) [iRODS](https://irods.org/) is a data management middleware. It uses large amounts of data along with their metadata from sources spread across multiple locations, computers and storage infrastructures.
