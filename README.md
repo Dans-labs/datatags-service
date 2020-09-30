@@ -86,8 +86,7 @@ To run DataTags Recommendation Service Tool via Docker, just type
     
 ### <a name="datatags-kubernetes"></a>Kubernetes
 ### <a name="datatags-demo"></a>Demo
-### <a name="datatags-connection"></a>Connection to DataTag Service
-
+Watch DataTags Recommendation Service Tool in action on [dtrs-demo.dataverse.tk](https://dtrs-demo.dataverse.tk/schema)
 ### <a name="datatags-dataverse"></a>Connection to DataTag Service
         {
             "dataTagServiceUrl": "http://localhost:8888/dans/v1", 
