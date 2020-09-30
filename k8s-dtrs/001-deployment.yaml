@@ -1,0 +1,27 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: dtrs
+  namespace: default
+  labels:
+    app: dtrs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dtrs
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: dtrs
+    spec:
+      containers:
+        - name: dtrs
+          image: ekoindarto/dts:latest
+#          imagePullPolicy: Never
+          ports:
+            - name: dtrs
+              containerPort: 8888
+

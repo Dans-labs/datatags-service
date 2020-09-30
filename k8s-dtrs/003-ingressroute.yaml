@@ -1,0 +1,38 @@
+# IngresRoute
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dtrs-web
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`dtrs-demo.dataverse.tk`)
+      kind: Rule
+      services:
+        - name: dtrs
+          port: 8888
+      middlewares:
+        - name: admin-websecure
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: dtrs-websecure
+  namespace: default
+
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`dtrs-demo.dataverse.tk`)
+      kind: Rule
+      services:
+        - name: dtrs
+          port: 8888
+      middlewares:
+        - name: admin-websecure
+  tls:
+    certResolver: default
