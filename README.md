@@ -12,11 +12,12 @@ to discover, access, use and reuse a broad spectrum of resources for advanced da
 
 #### WP2
 
-The EOSC-Hub WP2 concerns development of DataTags as a service for data support to the EOSC-hub.
+Within EOSC-Hub work package 2, DANS is working at an implementation of a DataTags recommendation Tool for the European General Data Protection Regulation (GDPR) 
 
 ## Overview
-
-The service is developed in a generic way; therefore it can be used by any applications that support REST API.
+The service is developed in a generic way, so it can be used with different decision trees, and different repositories as long as the repository supports the use of REST API.
+It receives and XML file as the result of completing the questionnaire, provenance information of the questionnaire used (including PID).
+The service connects with the application of choice, and sends this information through API. 
 
 In the sections below more details are provided about:
 
@@ -39,7 +40,8 @@ In the sections below more details are provided about:
     *   [Dataverse](#datatags-dataverse)
     *   [B2Share](#datatags-b2share)
     *	[Your own application](#datatags-apps)
-*   [iRODS Rules Output](https://irods.org/)
+*   [Provenance](#datatags-provenance)    
+*   [iRODS Rules Output](#datatags-irods)
 
 ### <a name="datatags-architecture"></a>Architecture
 The design of the Data Tags Recommendation Service is based on OpenAPI 3.0 specification, Plugins-based architecture and in a generic and reusable way.
@@ -68,7 +70,7 @@ The DataTags Recommendation Service uses the following frameworks and technology
 The Datatags Recommendation Schema supports researchers in complying with the GDPR. Through a series of such questions, the tree results in DataTags which serve as advice for compliance. This questionnaire is viewed as a tool to be used at the start of the dataset deposit process, a guide for the conversation between depositor and repository, to help determine a dataset’s content and assess any possible non-compliance issues.
 
 ### <a name="datatags-schema-creator"></a>DataTags Schema Creator(GUI)
-The DataTags Recommendation Tool has planned to create a pretty nice and user-friendly DataTags schema builder to create your own flow using drag and drop.
+(TODO) The DataTags Recommendation Tool has planned to create a pretty nice and user-friendly DataTags schema builder to create your own flow using drag and drop.
 However, you can create your own flow by using the following tools:
 
 ### <a name="datatags-schema-creator-zinktree"></a>Zinktree Visual Designer
@@ -98,10 +100,24 @@ Run the folowing command to setup the configuration:
 ### <a name="datatags-demo"></a>Demo
 Watch DataTags Recommendation Service Tool in action on [dtrs-demo.dataverse.tk](https://dtrs-demo.dataverse.tk/schema)
 ### <a name="datatags-dataverse"></a>Connection to DataTag Service
+The following configuration has to implemented on any application that uses the DataTag Recommendation Tool.
+
         {
             "dataTagServiceUrl": "http://localhost:8888/dans/v1", 
             "encryptKey": "@km1-10Dec04",
             "validity-duration": 600   
         }
  
- dataTagServiceUrl = is the        
+ - dataTagServiceUrl is the URL of the schema
+ - encryptKey is a key that Dataverse dan DTRS use to encryp and decrypt
+ - validity-duration is the number of seconds that the DTRS links is valid.
+ 
+ #### <a name="datatags-b2share"></a>Connection to Dataverse
+ The current implementation of 
+ 
+ ### <a name="datatags-provenance"></a>Provenance    
+ 
+ ### <a name="datatags-irods"></a>iRODS Rules Output
+ (TODO) [iRODS](https://irods.org/) is a data management middleware. It uses large amounts of data along with their metadata from sources spread across multiple locations, computers and storage infrastructures.
+ The iRODS Rule Engine A critical component of the iRODS system that keeps track and interprets both system- and user-defined rules. It ensures data in properly described and accounted for. 
+ The DataTags Recommendation Tools will export the recommendation result as  a set of iRODS rules that can be used to enforce management policies, automate administrative functions, and validate assessment criteria. The rules are written in the iRODS rule language.
