@@ -67,7 +67,9 @@ The DataTags Recommendation Service uses the following frameworks and technology
 ![DANS DataTags Schema](readme-imgs/Datatags-2nd-prototype.jpg "DANS DataTags Schema")
 The Datatags Recommendation Schema supports researchers in complying with the GDPR. Through a series of such questions, the tree results in DataTags which serve as advice for compliance. This questionnaire is viewed as a tool to be used at the start of the dataset deposit process, a guide for the conversation between depositor and repository, to help determine a dataset’s content and assess any possible non-compliance issues.
 
-
+### <a name="datatags-schema-creator"></a>DataTags Schema Creator(GUI)
+The DataTags Recommendation Tool has planned to create a pretty nice and user-friendly DataTags schema builder to create your own flow using drag and drop.
+However, you can create your own flow by using the following tools:
 
 ### <a name="datatags-schema-creator-zinktree"></a>Zinktree Visual Designer
 
@@ -76,6 +78,7 @@ The Datatags Recommendation Schema supports researchers in complying with the GD
 ### <a name="datatags-schema-creator-yed"></a>yEd Graph Editor
 
 ![Zinktree DataTags Schema](readme-imgs/yed-designer.png "Zingtree DataTags Schema Creator")
+
 
 ### <a name="datatags-service-docker"></a>Dockerizing the DataTags Service
 DataTags Recommendation Service Tool has a simple ["Dockerfile"](https://docs.docker.com/reference/builder/) file format that it uses to specify the "layers" of the DataTags Recommendation Service Tool image. 
