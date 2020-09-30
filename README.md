@@ -88,6 +88,13 @@ To run DataTags Recommendation Service Tool via Docker, just type
     docker run -d -p 8888:8888 --name dtrs ekoindarto/dts:latest
     
 ### <a name="datatags-kubernetes"></a>Kubernetes
+The DataTags Recommendation Tool [DTRS kubernetes configuration](https://github.com/ekoi/datatags-service/tree/master/k8s-dtrs) uses [Træfik v2.2](https://containo.us/traefik/) as the ingress controller for your Kubernetes cluster. 
+First, deploy Traefik in a daemonset and put a "DTRS" service behind it. It will also set up a certificate via Let's Encrypt.<br/>
+The manual deploy Traefik can be found [here](https://github.com/ekoi/traefik-speeltuin)<br/>
+Run the folowing command to setup the configuration:
+
+        kubectl apply -f k8s-dtrs/
+        
 ### <a name="datatags-demo"></a>Demo
 Watch DataTags Recommendation Service Tool in action on [dtrs-demo.dataverse.tk](https://dtrs-demo.dataverse.tk/schema)
 ### <a name="datatags-dataverse"></a>Connection to DataTag Service
