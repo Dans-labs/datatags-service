@@ -32,6 +32,7 @@ In the sections below more details are provided about:
 *   [DataTags Schema Creator(GUI)](#datatags-schema-creator)
     *   [Creating DataTags Schema using Zinktree](https://zingtree.com/)
     *   [Creating DataTags Schema using yEd Graph Editor](https://www.yworks.com/products/yed)
+    *   [Schema Generator for Spring WebFlow](#datatags-schema-generator)
 *   [Push Plugins]()
 *   [Dockerizing the DataTags Service](#datatags-service-docker)
 *   [Deploying, Running and Using DataTags Service on Kubernetes](#datatags-kubernetes)
@@ -80,6 +81,12 @@ However, you can create your own flow by using the following tools:
 ### <a name="datatags-schema-creator-yed"></a>yEd Graph Editor
 
 ![Zinktree DataTags Schema](readme-imgs/yed-designer.png "Zingtree DataTags Schema Creator")
+
+### <a name="datatags-schema-generator"></a>Schema Generator for Spring WebFlow
+The exported xml from the [DataTags Schema Creator(GUI)](#datatags-schema-creator) will be transformed by XLST to flow that consists of states, transitions, and data.
+![Schema Generator for Spring WebFLow](readme-imgs/dtrs-flow-generator.png "Schema Generator")
+
+
 
 
 ### <a name="datatags-service-docker"></a>Dockerizing the DataTags Service
