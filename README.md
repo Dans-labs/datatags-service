@@ -1,4 +1,4 @@
-# DataTags Service
+# DataTags Recommendation Service
 
 ##### EOSC-Hub 
 
@@ -40,14 +40,21 @@ In the sections below more details are provided about:
     *	[Your own application](#datatags-apps)
 *   [iRODS Rules Output](https://irods.org/)
 
-### <a name="datatags-architecture"></a>DataTags Architecture
+### <a name="datatags-architecture"></a>Architecture
 ![DataTagse-Architecture](readme-imgs/Datatags-Architecture.png "DataTags Service")
-
-### Open API 3.0 Specification
+The design of the Data Tags Recommendation Service is based on OpenAPI 3.0 specification, Plugins-based architecture and in a generic and reusable way.
+The service uses [Spring Boot](https://spring.io/projects/spring-boot) framework that is generated from Open API 3.0 specification by using the [swagger-codegen](https://github.com/swagger-api/swagger-codegen). 
+The plugins mechanism is based on the [Java reflection API](https://docs.oracle.com/javase/tutorial/reflect/) that allows [runtime type introspections](https://en.wikipedia.org/wiki/Type_introspection). This increase the flexibility and the application can be dynamically extended to include new features.
 
 ### Frameworks
+The Daatags Recommendation Service uses the following frameworks and technology:
+- Spring Boot <br/>
+  It is an open source Java-based framework used to create a micro Service. 
+- Spring Web Flow
+- XSLT
+- IRODS
 
-### <a name="datatags-schema-dans"></a>DANS DataTags Schema
+### <a name="datatags-schema-dans"></a>DANS DataTags Recommendation Schema
 ![DANS DataTags Schema](readme-imgs/Datatags-2nd-prototype.jpg "DANS DataTags Schema")
 ![DANS DataTags UI](readme-imgs/DANS-DataTags-Schema.png "DANS DataTags UI")
 
