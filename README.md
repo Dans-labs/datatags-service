@@ -77,13 +77,17 @@ However, you can create your own flow by using the following tools:
 ### <a name="datatags-schema-creator-zinktree"></a>Zinktree Visual Designer
 
 ![Zinktree DataTags Schema](readme-imgs/zinktree-visual-designer.png "Zingtree DataTags Schema Creator")
+Zingtree offers JSON format for exporting trees. This will retain the entire structure the tree, including tree settings, data entry fields and apps. 
+![Zingtree json](readme-imgs/exported-json-zingtree.png "Zingtree json")
+The exported Zingtree json can be transformed to the flow definition by using [Schema Generator for Spring WebFlow](#datatags-schema-generator)
 
 ### <a name="datatags-schema-creator-yed"></a>yEd Graph Editor
 
-![Zinktree DataTags Schema](readme-imgs/yed-designer.png "Zingtree DataTags Schema Creator")
+![yed DataTags Schema](readme-imgs/yed-designer.png "Zingtree DataTags Schema Creator")
 
 ### <a name="datatags-schema-generator"></a>Schema Generator for Spring WebFlow
 The exported xml from the [DataTags Schema Creator(GUI)](#datatags-schema-creator) will be transformed by XLST to flow that consists of states, transitions, and data.
+
 ![Schema Generator for Spring WebFLow](readme-imgs/dtrs-flow-generator.png "Schema Generator")
 
 
