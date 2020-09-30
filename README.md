@@ -34,6 +34,7 @@ In the sections below more details are provided about:
 *   [Push Plugins]()
 *   [Dockerizing the DataTags Service](#datatags-service-docker)
 *   [Deploying, Running and Using DataTags Service on Kubernetes](#datatags-kubernetes)
+*   [Demo](#datatags-demo)
 *   [Connecting to DataTags Service](#datatags-connection)
     *   [Dataverse](#datatags-dataverse)
     *   [B2Share](#datatags-b2share)
@@ -78,8 +79,13 @@ The Daatags Recommendation Service uses the following frameworks and technology:
 
 ### <a name="datatags-service-docker"></a>Dockerizing the DataTags Service
 DataTags Recommendation Service Tool has a simple ["Dockerfile"](https://docs.docker.com/reference/builder/) file format that it uses to specify the "layers" of the DataTags Recommendation Service Tool image. 
-Although this Dockerfile is very simple, it is all you need to run the DataTags Recommendation Service Toolwithout garnish: just Java and a JAR file.
+Although this Dockerfile is very simple, it is all you need to run the DataTags Recommendation Service Tool without garnish: just Java and a JAR file.<br/>
+To run DataTags Recommendation Service Tool via Docker, just type
 
+    docker run -d -p 8888:8888 --name dtrs ekoindarto/dts:latest
+    
+### <a name="datatags-kubernetes"></a>Kubernetes
+### <a name="datatags-demo"></a>Demo
 ### <a name="datatags-connection"></a>Connection to DataTag Service
 
 ### <a name="datatags-dataverse"></a>Connection to DataTag Service
