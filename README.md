@@ -124,7 +124,13 @@ The following configuration has to implemented on any application that uses the 
  - validity-duration is the number of seconds that the DTRS links is valid.
  
  #### <a name="datatags-b2share"></a>Connection to Dataverse
- The current implementation of 
+ The Dataverse connection to DataTags Recommendation Tool is implemented on [Dataverse v4.19-dans-datatags](https://github.com/ekoi/dataverse/tree/v4.19-dans-datatags)
+
+ ![DataTags Dataverse Popup](readme-imgs/datatags-dataverse-popup.png "DataTags Dataverse Popup")
+ This prototype implementation does not enforce security measures that are relevant for the obtained tag. It is just to inform the depositor about the level of sensitivity of the data. It 
+
+ ![DataTags Dataverse Result](readme-imgs/datatags-dataverse-result.png "DataTags Dataverse Result")
+ 
  
  ### <a name="datatags-provenance"></a>Provenance    
  
