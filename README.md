@@ -2,21 +2,19 @@
 
 ##### EOSC-Hub 
 
-EOSC-hub is the largest implementation project of the European Open Science Cloud (EOSC) initiative. It is a central contact point for European researchers and innovators 
-to discover, access, use and reuse a broad spectrum of resources for advanced data-driven research. 
+EOSC-hub is the largest implementation project of the European Open Science Cloud (EOSC) initiative. It is a central contact point for European researchers and innovators to discover, access, use and reuse a broad spectrum of resources for advanced data-driven research. 
 
 The consortium of 100 partners from more than 50 countries will develop the vision of the Hub as the integration and 
 management system of the future European Open Science Cloud. EOSC-hub is the largest implementation project of the European Open Science Cloud (EOSC) initiative. 
-It is a central contact point for European researchers and innovators 
-to discover, access, use and reuse a broad spectrum of resources for advanced data-driven research. 
+It is a central contact point for European researchers and innovators to discover, access, use and reuse a broad spectrum of resources for advanced data-driven research. 
 
 #### WP2
 
-Within EOSC-Hub work package 2, DANS is working at an implementation of a DataTags recommendation Tool for the European General Data Protection Regulation (GDPR) 
+Within EOSC-Hub work package 2, DANS is working on an implementation of a DataTags Recommendation Tool that is compliant with the European General Data Protection Regulation (GDPR). 
 
 ## Overview
 The service is developed in a generic way, so it can be used with different decision trees, and different repositories as long as the repository supports the use of REST API.
-It receives and XML file as the result of completing the questionnaire, provenance information of the questionnaire used (including PID).
+The service receives and XML file as the result of completing a questionnaire and provenance information of the questionnaire used (including PID).
 The service connects with the application of choice, and sends this information through API. 
 
 In the sections below more details are provided about:
@@ -45,10 +43,10 @@ In the sections below more details are provided about:
 *   [iRODS Rules Output](#datatags-irods)
 
 ### <a name="datatags-architecture"></a>Architecture
-The design of the Data Tags Recommendation Service is based on OpenAPI 3.0 specification, Plugins-based architecture and in a generic and reusable way.
+The architecture of the Data Tags Recommendation Service is based on OpenAPI 3.0 specification, it has a plugins-based architecture and is designed in a generic and reusable way.
 ![DataTagse-Architecture](readme-imgs/Datatags-Architecture.png "DataTags Service")
-The service uses [Spring Boot](https://spring.io/projects/spring-boot) framework that is generated from Open API 3.0 specification by using the [swagger-codegen](https://github.com/swagger-api/swagger-codegen). 
-The plugins mechanism is based on the [Java reflection API](https://docs.oracle.com/javase/tutorial/reflect/) that allows [runtime type introspections](https://en.wikipedia.org/wiki/Type_introspection). This increase the flexibility and the application can be dynamically extended to include new features.
+The service uses the [Spring Boot](https://spring.io/projects/spring-boot) framework that is generated from Open API 3.0 specification by using the [swagger-codegen](https://github.com/swagger-api/swagger-codegen). 
+The plugins mechanism is based on the [Java reflection API](https://docs.oracle.com/javase/tutorial/reflect/) that allows [runtime type introspections](https://en.wikipedia.org/wiki/Type_introspection). This increases the flexibility and the application can be dynamically extended to include new features.
 
 ### <a name="datatags-openapi"></a>Open API 3.0 Spec
 [Open API](https://github.com/swagger-api/swagger-core) is an API Specification framework of the OpenAPI initiative. 
@@ -68,25 +66,26 @@ The DataTags Recommendation Service uses the following frameworks and technology
 
 ### <a name="datatags-schema-dans"></a>DANS DataTags Recommendation Schema
 ![DANS DataTags Schema](readme-imgs/Datatags-2nd-prototype.jpg "DANS DataTags Schema")
-The Datatags Recommendation Schema supports researchers in complying with the GDPR. Through a series of such questions, the tree results in DataTags which serve as advice for compliance. This questionnaire is viewed as a tool to be used at the start of the dataset deposit process, a guide for the conversation between depositor and repository, to help determine a dataset’s content and assess any possible non-compliance issues.
+The Datatags Recommendation Schema supports researchers in complying with the GDPR. it consists of a set of questions which users can answer in order to receive a recommendation on the level of privacy protection their personal data need. The question and answer path will result in a recommended data protection level with a description for the user of what that protection level implies for the storage and sharing of the data, this will be displayed also as a “DataTag” at the end.
+This questionnaire is viewed as a tool to be used at the start of the dataset deposit process, a guide for the conversation between depositor and repository, to help determine a dataset’s content and assess any possible non-compliance issues.
 
 ### <a name="datatags-schema-creator"></a>DataTags Schema Creator(GUI)
-(TODO) The DataTags Recommendation Tool has planned to create a pretty nice and user-friendly DataTags schema builder to create your own flow using drag and drop.
-However, you can create your own flow by using the following tools:
+The DataTags Recommendation Tool has planned to create a pretty nice and user-friendly DataTags schema builder to create your own flow using drag and drop. However, this is not planned in the near future. In the mean time, you can create your own flow by using the following tools:
 
 ### <a name="datatags-schema-creator-zinktree"></a>Zinktree Visual Designer
 
 ![Zinktree DataTags Schema](readme-imgs/zinktree-visual-designer.png "Zingtree DataTags Schema Creator")
-Zingtree offers JSON format for exporting trees. This will retain the entire structure the tree, including tree settings, data entry fields and apps. 
+Zingtree offers JSON format for exporting trees. This will retain the entire structure of the tree, including the tree settings, data entry fields and apps. 
 ![Zingtree json](readme-imgs/exported-json-zingtree.png "Zingtree json")
-The exported Zingtree json can be transformed to the flow definition by using [Schema Generator for Spring WebFlow](#datatags-schema-generator)
+The exported Zingtree json can be transformed to the flow definition by using [Schema Generator for Spring WebFlow](#datatags-schema-generator). 
 
 ### <a name="datatags-schema-creator-yed"></a>yEd Graph Editor
 
 ![yed DataTags Schema](readme-imgs/yed-designer.png "Zingtree DataTags Schema Creator")
+<!-- Maybe add a small sentence about this yED Graph Editor? Like "You can also use the yED Graph Editor for creating your own decision tree." -->
 
 ### <a name="datatags-schema-generator"></a>Schema Generator for Spring WebFlow
-The exported xml from the [DataTags Schema Creator(GUI)](#datatags-schema-creator) will be transformed by XLST to flow that consists of states, transitions, and data.
+The exported xml from the [DataTags Schema Creator(GUI)](#datatags-schema-creator) will be transformed by XLST to a flow that consists of states, transitions, and data.
 
 ![Schema Generator for Spring WebFLow](readme-imgs/dtrs-flow-generator.png "Schema Generator")
 
@@ -94,7 +93,7 @@ The exported xml from the [DataTags Schema Creator(GUI)](#datatags-schema-creato
 
 
 ### <a name="datatags-service-docker"></a>Dockerizing the DataTags Service
-DataTags Recommendation Service Tool has a simple ["Dockerfile"](https://docs.docker.com/reference/builder/) file format that it uses to specify the "layers" of the DataTags Recommendation Service Tool image. 
+The DataTags Recommendation Service Tool has a simple ["Dockerfile"](https://docs.docker.com/reference/builder/) file format that it uses to specify the "layers" of the DataTags Recommendation Service Tool image. 
 Although this Dockerfile is very simple, it is all you need to run the DataTags Recommendation Service Tool without garnish: just Java and a JAR file.<br/>
 To run DataTags Recommendation Service Tool via Docker, just type
 
@@ -109,9 +108,9 @@ Run the folowing command to setup the configuration:
         kubectl apply -f k8s-dtrs/
         
 ### <a name="datatags-demo"></a>Demo
-Watch DataTags Recommendation Service Tool in action on [dtrs-demo.dataverse.tk](https://dtrs-demo.dataverse.tk/schema)
+Watch the DataTags Recommendation Service Tool in action on [dtrs-demo.dataverse.tk](https://dtrs-demo.dataverse.tk/schema)
 ### <a name="datatags-dataverse"></a>Connection to DataTag Service
-The following configuration has to implemented on any application that uses the DataTag Recommendation Tool.
+The following configuration has to be implemented on any application that uses the DataTags Recommendation Tool.
 
         {
             "dataTagServiceUrl": "https://dtrs-demo.dataverse.tk/dans/v1", 
@@ -134,12 +133,12 @@ The following configuration has to implemented on any application that uses the 
  
  
  ### <a name="datatags-provenance"></a>Provenance
- Provenance information of Tagged result which is the version of the DataTags Schema and the timestamp of the created tag. This includes information about the chosen answers and its questions.
+When a questionnaire has been filled in, a JSON file with provenance information of the questionnaire is also avaialble to store in Dataverse. The provenance information includes the version number of the DataTags Schema, the timestamp of the created tag, the questions and the the chosen answers.
  
  ![DataTags Prov](readme-imgs/datatags-prov.png "DataTags Prov")
 
  
- ### <a name="datatags-irods"></a>iRODS Rules Output
- (TODO) [iRODS](https://irods.org/) is a data management middleware. It uses large amounts of data along with their metadata from sources spread across multiple locations, computers and storage infrastructures.
- The iRODS Rule Engine A critical component of the iRODS system that keeps track and interprets both system- and user-defined rules. It ensures data in properly described and accounted for. 
- The DataTags Recommendation Tools will export the recommendation result as  a set of iRODS rules that can be used to enforce management policies, automate administrative functions, and validate assessment criteria. The rules are written in the iRODS rule language.
+ ### <a name="datatags-irods"></a>Future development - iRODS Rules Output
+ [iRODS](https://irods.org/) is a data management middleware. It uses large amounts of data along with their metadata from sources spread across multiple locations, computers and storage infrastructures.
+ The iRODS Rule Engine is a critical component of the iRODS system that keeps track and interprets both system- and user-defined rules. It ensures data is properly described and accounted for. 
+ The DataTags Recommendation Tools will export the recommendation result as a set of iRODS rules that can be used to enforce management policies, automate administrative functions, and validate assessment criteria. The rules are written in the iRODS rule language. 
